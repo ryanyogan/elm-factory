@@ -4,7 +4,7 @@ const gulp = require('gulp')
 const portscanner = require('portscanner')
 const program = require('commander')
 
-const {dev} = require('../gulpfile')
+const dev = require('../src/dev')
 
 program.on('--help', function() {
   console.log(`
@@ -40,6 +40,5 @@ opts.host || opts.port
   : portscanner.findAPortNotInUse(8000, 9000).then(port => {
       portscanner.findAPortNotInUse(8010, 9000).then(reactorPort => {
         dev(Object.assign({}, opts, {port, reactorPort}))
-        gulp.start('dev')
       })
     })
